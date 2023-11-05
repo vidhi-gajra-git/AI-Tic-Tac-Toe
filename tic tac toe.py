@@ -1,46 +1,12 @@
 # just input taken here
-# Initialize the Tic-Tac-Toe board
+
 board = [[' ' for _ in range(3)] for _ in range(3)]
 import math
 import copy
 
 INT_MIN = -math.inf
 INT_MAX = math.inf
-class Node():
-  child=[]
-  path=None
-  val=0
 
-
-  def __init__(self,graph):
-        self.graph = graph
-        self.child = []
-        self.val = 0
-
-
-  def addChild(self,node):
-    self.child.append(node )
-  def best_path(self,node):
-    self.path=node
-
-
-  def setVal(self,val ):
-    self.val=val
-def dfs(node):
-    if node is not None:
-        # Visit the current node (print its value)
-        for row in node.graph:
-          for element in row:
-              print(f"{element}", end=" ")  # Adjust the width as needed
-          print()  # Move to the next row
-        print("\t")
-        print(node.val, end=' ')
-
-        print("\n")
-
-        # Recur on all the children of the current node
-
-        dfs(node.path)
 class game():
 
   count=0
@@ -125,14 +91,9 @@ class game():
   def minmax (self,graph, depth, isMax ,a,b ):
 
     if  depth==9 or abs(self.calVal(graph))==100:
-      # print(f"Matrix Val: {node.val}")
-      # for row in node.graph:
-      #   for element in row:
-      #       print(f"{element}", end=" ")  # Adjust the width as needed
-      #   print()  # Move to the next row
-      # print(node.val)
+     
       val=self.calVal(graph)
-    #   print(f"node val ={val}")
+  
       return val
     if isMax:
       local_max=INT_MIN
@@ -147,8 +108,7 @@ class game():
             temp[i][j]='X'
 
             val=self.minmax(temp,depth+1,False , a,b)
-            # print(f"max fn depth={depth} val_returned for {[i]} {[j]}={val}")
-          # local_max=max(val,local_max)
+            
             if val>local_max :
               local_max=val
               best_children=temp
@@ -171,9 +131,7 @@ class game():
 
               temp[i][j]='O'
               val=self.minmax(temp,depth+1,True , a,b)
-            #   print(f"min fn depth={depth} val_returned for {[i]} {[j]}={val}")
-
-            # local_MIN=max(val,local_max)
+           
               if val<local_min :
                 local_min=val
 
@@ -231,15 +189,15 @@ while flag:
     if val==100 :
        print_board(board)
 
-       print("You luuhzz💔!🥺 !")
+       print("You loose💔!🥺 !")
        flag=False
     elif val==-100:
       print_board(board)
 
-      print("You weehn🥳🥳❤️!")
+      print("You win🥳🥳❤️!")
       flag=False
     if count==8:
-      print("Tyeeeeehh 🤡")
+      print("Tie 🤡")
 
 
 
